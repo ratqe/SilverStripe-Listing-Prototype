@@ -2,7 +2,7 @@
 /.env
 *.log
 /vendor/
-/themes/simple/
+/themes/simple/webfonts
 /_resources/
 /resources/
 /public/_resources/
