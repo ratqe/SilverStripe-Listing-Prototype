@@ -3,6 +3,7 @@
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 use SilverStripe\Forms\DateField;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\CheckboxField;
@@ -51,8 +52,8 @@ class ListingPage extends Page
         'ListingImageObjects' => ListingImageObject::class // ListingImageObject.php
     ];
 
-    private static $has_one = [
-        'ContactObject' => ContactObject::class // ContactObject.php
+    private static $many_many = [
+        'Contacts' => ContactObject::class,
     ];
 
     public function getCMSFields()
@@ -137,6 +138,7 @@ class ListingPage extends Page
                 CheckboxField::create('IsFurnished', 'Fully Furnished')
             )
         );
+        /*
         // contact
         $fields->addFieldToTab(
             'Root.Contact',
@@ -145,6 +147,18 @@ class ListingPage extends Page
                 'Assigned Agent',
                 ContactObject::get()->map('ID', 'ContactName') 
             )->setEmptyString('-- Select an Agent --')
+        );
+        */
+
+        // contacts
+        $fields->addFieldToTab(
+            'Root.Contacts',
+            GridField::create(
+                'Contacts',
+                'Agents / Contacts',
+                $this->Contacts(),
+                GridFieldConfig_RelationEditor::create()
+            )
         );
 
         return $fields;

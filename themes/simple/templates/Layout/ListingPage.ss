@@ -6,7 +6,7 @@
     <!-- maybe remove the thumbnail and have the carousel, but also include a gallery to see all images -->
 
     <!-- open button (temp) -->
-
+<article>
 <div id="images-gallery-overlay">
 
     <div class="images-gallery-container">
@@ -66,11 +66,6 @@
 
 </div>
 
-
-    <br>
-    <br>
-    <br>
-    <br>
     
     <!-- BIG IMAGE GALLERY -->
     <% if $ListingImageObjects.exists %>
@@ -102,14 +97,18 @@
         </div>
 
         <div class="gallery-right">
-            <button onclick="overlayOn()" class="btn btn-primary">Click me</button>
+            <button onclick="overlayOn()" class="btn btn-primary">Image gallery</button>
+            <button class="btn btn-primary">Floor Plan</button>
         </div>
         </div>
     <% end_if %>
 
     <!-- ADDRESS TITLE -->
 
+    <div class="address-container">
     <h1>$Address</h1>
+    </div>
+
 
     <!-- feature section -->
     <div class="feature-section d-inline-flex">
@@ -136,24 +135,24 @@
         <p>$Content</p>
     </div>
 
-        <div class="listing-feature-container">
+        <div class="listing-quality-container">
         <h2>Quality Features</h2>
-        <div class="d-flex">
+        <div class="d-flex align-content-start flex-wrap">
             <% if $QualityAppliances %>
-                <div class="listing-feature-box">Quality Appliances</div>
+                <div class="listing-quality-box">Quality Appliances</div>
             <% end_if %>
             <% if $HasAC %>
-                <div class="listing-feature-box">Air Conditioning</div>
+                <div class="listing-quality-box">Air Conditioning</div>
             <% end_if %>
             <% if $IsFurnished %>
-                <div class="listing-feature-box">Fully Furnished</div>
+                <div class="listing-quality-box">Fully Furnished</div>
             <% end_if %>
         </div>
     </div>
 
     <div class="listing-feature-container">
-        <h2>Features</h2>
-        <div class="d-flex">
+        <h2>Additional Information</h2>
+        <div class="d-flex align-content-start flex-wrap">
             <% if $FloorSpace %>
                 <div class="listing-feature-box">$FloorSpace m² Floor Space</div>
             <% end_if %>
@@ -170,49 +169,15 @@
         </div>
     </div>
 
-    <!-- OLD CODE STARTS HERE -->
-    <h1> OLD CODE <h1>
-    <p><strong>Date Listed:</strong> $Date.Nice</p>
-    <p><strong>Rent Cost per Week:</strong> $Cost</p>
-
-    <!-- General Features -->
-    <h6>Features</h6>
-    <ul>
-        <% if $OpenPlan %>
-            <li>Open Plan</li>
-        <% end_if %>
-    </ul>
-
-    <!-- MJ Home Specific -->
-    <h6>Quality Features</h6>
-
-    <ul>
-    <% if $HasHeatPump %>
-    <li>Heat Pump</li>
-    <% end_if %>
-    <% if $HasDeckArea %>
-    <li>Deck Area</li>
-    <% end_if %>
-    <% if $HasGardenArea %>
-    <li>Garden Area</li>
-    <% end_if %>
-    </ul>
-
-    <!-- Furnishing -->
-    <h6>Furnishing & Appliances</h6>
-
-    <ul>
-    <% if $QualityAppliances %>
-        <li>Quality Appliances</li>
-    <% end_if %>
-    <% if $HasAC %>
-        <li>Air Conditioning</li>
-    <% end_if %>
-    <% if $IsFurnished %>
-        <li>Fully Furnished</li>
-    <% end_if %>
-    </ul>
-
-    <!-- Content body -->
+    <div>
+        <h2>Contact an Agent</h2>
+        <% loop $Contacts %>
+        <div>
+            <p>$ContactName</p>
+            <p>$ContactPhone</p>
+            <p>$ContactEmail</p>
+        </div>
+        <% end_loop %>
+    </div>
 
 </article>

@@ -1,3 +1,13 @@
+:root {
+    /* MJ HOME colours */
+    --secondary: #fdead4;
+    --highlight: #F8A001;
+}
+
+.btn {
+    text-transform: none;
+}
+
 #listingCarousel {
     height: 100%;
 }
@@ -9,30 +19,35 @@
 }
 
 .gallery-container {
-    width: 66%;
+
 }
 
 .gallery-right {
     float: right;
+    align-items: end;
     width: 33%;
     height: 100%;
     background-color: green;
 }
 
-/* feature section */
+/* top feature section */
 
 .feature-section {
-    background-color: rgb(188, 184, 178);
+    background-color: var(--secondary);
     padding: 0.5em;
     border-radius: 10px;
+    border-width: 2px;
+    border-color: var(--highlight);
 }
 
+    /* separate feature sections */
 .feature-box {
+    font-weight: bold;
     border-style: solid;
-    border-color: rgb(105, 105, 105);
+    border-color: var(--highlight);
     border-width: 0 2px 0 0;
     padding: 0.5em 1em;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .feature-box:last-child {
@@ -41,34 +56,60 @@
 
 /* main container */
 
-.listing-description-container {
-    padding: 1em;
-    margin: 2em 0;
-    border-radius: 10px;
-    background-color: rgb(203, 203, 203);
+.address-container {
     width: 100%;
 }
 
-.listing-feature-container {
+.address {
+    min-width: 50%;
+}
+
+.address-side {
+    max-width: 50%;
+    align-items: right;
+}
+
+.listing-description-container {
+    margin: 1em 0;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    min-height: 100px;
+    font-size: 1.2em;
+}
+
+.listing-quality-container, .listing-feature-container {
     margin: 2em 0;
-    padding: 0.3em;
-    background-color: rgb(203, 203, 203);
+    padding: 0.8em;
+    background-color: var(--secondary);
     border-radius: 10px;
     width: 100%;
+}
+
+.listing-quality-box, .listing-feature-box {
+    padding: 0.7em 1em;
+    margin: 0.2em;
+    background-color: white;
+    border-radius: 10px;
+    border-color: var(--highlight);
+    border-style: solid;
+    border-width: 2px;
+    min-width: 2em;
+    font-size: 1.2em;
+}
+
+.listing-quality-box div, .listing-feature-box div {
+    row-gap: 3em;
 }
 
 .listing-feature-box {
-    padding: 0.3em;
-    background-color: white;
-    border-radius: 10px;
-    min-width: 2em;
+    border-color: rgb(86, 86, 86);
 }
 
 /* overlay */
 
 .images-gallery-container {
-    width: 100%;
-    height: 80%;
+    height: 100%;
     /* TEMP */
     color: white;
 }
