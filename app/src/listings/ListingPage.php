@@ -49,27 +49,17 @@ class ListingPage extends Page
     ];
 
     private static $has_many = [
-        'ListingImageObjects' => ListingImageObject::class // ListingImageObject.php
+        'ListingImageObjects' => ListingImageObject::class, // ListingImageObject.php
+        'ListingFloorPlans' => ListingFloorPlanObject::class
     ];
 
     private static $many_many = [
-        'Contacts' => ContactObject::class,
+        'Contacts' => ContactObject::class
     ];
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-
-        // Images tab
-        $fields->addFieldToTab(
-            'Root.Images',
-            GridField::create(
-                'ListingImageObjects',
-                'Images',
-                $this->ListingImageObjects(),
-                GridFieldConfig_RecordEditor::create()
-            )
-        );
 
         // main fields
         // add main fields (Root.Main)
@@ -93,6 +83,17 @@ class ListingPage extends Page
                 'ListingImageObjects',
                 'Images',
                 $this->ListingImageObjects(),
+                GridFieldConfig_RecordEditor::create()
+            )
+        );
+
+        // floor plan
+        $fields->addFieldToTab(
+            'Root.Images',
+            GridField::create(
+                'ListingFloorPlans',
+                'Floor Plans',
+                $this->ListingFloorPlans(),
                 GridFieldConfig_RecordEditor::create()
             )
         );

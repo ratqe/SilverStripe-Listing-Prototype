@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Function to open overlay and start on the same slide
-  window.overlayOn = function () {
+  window.imagesOverlayOn = function () {
     const overlay = document.getElementById("images-gallery-overlay");
     overlay.style.display = "block";
 
@@ -31,5 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Close overlay
   window.overlayOff = function () {
     document.getElementById("images-gallery-overlay").style.display = "none";
+  };
+
+  window.floorPlanOverlayOn = function () {
+    const overlay = document.getElementById("floorplan-gallery-overlay");
+    overlay.style.display = "block";
+  };
+
+  window.floorPlanOverlayOff = function () {
+    document.getElementById("floorplan-gallery-overlay").style.display = "none";
   };
 });
