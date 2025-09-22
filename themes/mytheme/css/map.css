@@ -1,0 +1,10 @@
+.property-map__canvas {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+}
+.property-map__address {
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+body { outline: 4px solid lime; }
