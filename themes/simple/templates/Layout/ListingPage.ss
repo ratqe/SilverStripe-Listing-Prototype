@@ -166,6 +166,7 @@
 
     <div class="address-container">
     <h1>$Address</h1>
+    <h3 style="float:right;">$$Cost per week</h3>
     </div>
 
 
