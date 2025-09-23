@@ -28,7 +28,7 @@
 
 
 <article class="content typography">
-<p style="background:#ff0;padding:.5rem">PROPERTY PAGE LAYOUT LOADED</p>
+
   $Content
 
   <h2>Location</h2>
