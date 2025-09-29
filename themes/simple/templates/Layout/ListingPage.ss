@@ -241,4 +241,11 @@
         <% end_loop %>
     </div>
 
+    <!-- map -->
+    <% if $Latitude.exists %>
+        <p>co-ords exist</p>
+    <% end_if %>
+    <% include PropertyMapPOI %>
+    
+
 </article>
