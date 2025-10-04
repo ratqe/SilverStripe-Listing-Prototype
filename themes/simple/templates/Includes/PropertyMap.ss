@@ -1,6 +1,5 @@
 <% if $HasCoords %>
   <div class="property-map">
-    <% if $Address %><p class="property-map__address">$Address.XML</p><% end_if %>
     <div id="map" class="property-map__canvas" data-lat="$Latitude" data-lng="$Longitude"></div>
     <noscript>
       <p>Map requires JavaScript. You can still view it on 
