@@ -12,6 +12,7 @@ use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\FieldType\DBDecimal;
 use SilverStripe\Core\Environment;
+use SilverStripe\ORM\ValidationException;
 
 class ListingPage extends Page
 {
@@ -203,24 +204,46 @@ class ListingPage extends Page
         return null;
     }
 
-    /** Auto-geocode on save if Address changed and coords are blank/zero */
+ /**
+     * Auto-geocode on save if address changed and coords are blank,
+     * and throw a ValidationException if invalid.
+     */
     protected function onBeforeWrite()
     {
         parent::onBeforeWrite();
 
-        $addressChanged = $this->isChanged('Address', 2); // 2 = check value change
+        $addressChanged = $this->isChanged('Address', 2);
         $coordsMissing  = !$this->HasCoords();
 
-        if ($addressChanged && $coordsMissing && $this->Address) {
-            if ($coords = $this->geocodeAddress($this->Address)) {
+        // Only attempt if there is an address
+        if ($this->Address) {
+            // If no coords provided, try to geocode
+            if (($addressChanged || $coordsMissing) && $coordsMissing) {
+                $coords = $this->geocodeAddress($this->Address);
+
+                if (!$coords) {
+                    throw new ValidationException(
+                        _t(__CLASS__ . '.INVALID_ADDRESS', 
+                            'Unable to find a valid location for the given address. Please check and try again.')
+                    );
+                }
+
                 $this->Latitude  = $coords['lat'];
                 $this->Longitude = $coords['lng'];
+            }
+        } else {
+            // No address provided, ensure coordinates aren't blank
+            if ($coordsMissing) {
+                throw new ValidationException(
+                    _t(__CLASS__ . '.MISSING_ADDRESS', 
+                        'You must provide either a valid address or latitude/longitude.')
+                );
             }
         }
     }
 
     /**
-     * Geocode using OpenStreetMap Nominatim.
+     * Geocode using OpenStreetMap Nominatim, with error checking.
      */
     private function geocodeAddress(string $address): ?array
     {
@@ -230,7 +253,7 @@ class ListingPage extends Page
             'format'       => 'jsonv2',
             'limit'        => 1,
             'q'            => $address,
-            'countrycodes' => 'nz', // adjust for your region, or remove
+            'countrycodes' => 'nz',
         ]);
 
         $url = "https://nominatim.openstreetmap.org/search?$query";
@@ -244,12 +267,20 @@ class ListingPage extends Page
         ]);
 
         $json = @file_get_contents($url, false, $ctx);
-        if (!$json) {
-            return null;
+
+        if ($json === false) {
+            return null; // request failed
         }
 
         $data = json_decode($json, true);
-        if (!is_array($data) || empty($data[0]['lat']) || empty($data[0]['lon'])) {
+
+        if (
+            !is_array($data) ||
+            empty($data[0]['lat']) ||
+            empty($data[0]['lon']) ||
+            !is_numeric($data[0]['lat']) ||
+            !is_numeric($data[0]['lon'])
+        ) {
             return null;
         }
 
@@ -261,3 +292,4 @@ class ListingPage extends Page
 }
 
 class ListingPageController extends PageController {}
+
