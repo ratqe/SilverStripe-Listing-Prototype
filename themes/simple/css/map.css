@@ -1,0 +1,132 @@
+:root {
+  /* MJ HOME colours */
+  --secondary: #fdead4;
+  --highlight: #f8a001;
+}
+
+.leaflet-container {
+    background: #fff;
+}
+
+/* general (also in listing.css) */
+
+.listing-border {
+  border-color: var(--highlight);
+  border-style: solid;
+  border-width: 2px;
+}
+
+/* map section */
+
+.map-section-container {
+  display: flex;                /* ensure flex behavior */
+  background-color: white;
+  width: 100%;
+  min-height: 100px;
+  margin: 1em 0;
+  padding: 1em;
+  gap: 1em;
+  border-radius: 10px;
+  height: 500px;                /* defines overall height */
+  box-sizing: border-box;
+}
+
+.map-section-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-section-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-width: 3px;
+  border-color: var(--highlight);
+  border-style: solid;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#map {
+  flex: 1;
+  width: 100%;
+  height: 470px;                 
+  border-radius: inherit;      
+}
+
+
+.map-search-container {
+  background-color: var(--secondary);
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+.amenities-container {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 10px;
+  border-color: var(--highlight);
+  border-style: solid;
+  border-width: 3px;
+  padding: 5px;
+}
+
+.amenities-tab {
+  border-width: 0 0 2px 0;
+  padding: 10px 0;
+  border-color: grey;
+  border-style: solid;
+}
+
+.amenities-tab .tab-header {
+  cursor: pointer;
+}
+
+.amenities-dropdown {
+  display: none;
+}
+
+.amenities-dropdown.open {
+  display: flex;
+  flex-direction: column;
+}
+
+/* each separate amenities location */
+.amenities-dropdown div {
+  background-color: white;
+  border-width: 0 0 2px 0;
+  border-color: grey;
+  border-style: solid;
+}
+
+.amenities-dropdown div:last-child {
+  border: 0;
+}
+
+.map-section-right {
+  border-width: 3px;
+  border-color: var(--highlight);
+  border-style: solid;
+  border-radius: 10px;
+}
+
+/* prevent global css from changing leaflet map */
+.leaflet-container .leaflet-tile,
+.leaflet-container .leaflet-tile img {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Prevent any red borders or background from leaking into map markers */
+.leaflet-container img,
+.leaflet-container .leaflet-marker-icon,
+.leaflet-container .leaflet-marker-shadow {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
