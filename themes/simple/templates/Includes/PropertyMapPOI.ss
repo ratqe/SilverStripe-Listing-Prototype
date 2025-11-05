@@ -22,7 +22,7 @@
                 <!-- Quick Filters -->
                 <div class="quick-filters" style="display:flex; flex-wrap:wrap; gap:.5rem;">
                     <button class="qbtn" type="button" data-overpass='node["highway"="bus_stop"]' title="Bus stops">Bus stops</button>
-                    <button class="qbtn" type="button" data-overpass='node["amenity"="supermarket"];node["shop"="supermarket"]' title="Supermarkets">Supermarkets</button>
+                    <!--<button class="qbtn" type="button" data-overpass='node["amenity"="supermarket"];node["shop"="supermarket"]' title="Supermarkets">Supermarkets</button>-->
                     <button class="qbtn" type="button" data-overpass='node["shop"="supermarket"]["name"~"Woolworths|Countdown",i]' title="Woolworths">Woolworths</button>
                     <button class="qbtn" type="button" data-overpass='node["amenity"="school"]' title="Schools">Schools</button>
                     <button class="qbtn" type="button" data-overpass='node["amenity"="pharmacy"]' title="Pharmacies">Pharmacies</button>
